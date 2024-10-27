@@ -1,25 +1,31 @@
 {
-  "id": "module",
-  "title": "New Module",
-  "description": "",
+  "id": "foundry-rotate-scene",
+  "title": "Rotate Scene Common Display",
+  "description": "Rotate scenes for the common display during in-person play",
   "version": "#{VERSION}#",
   "library": "false",
   "manifestPlusVersion": "1.2.0",
   "compatibility": {
     "minimum": 10,
-    "verified": 10,
-    "maximum": 11
+    "verified": 12,
+    "maximum": 12
   },
   "authors": [
     {
-      "name": "The League of Extraordinary FVTT Developers",
-      "url": "https://github.com/League-of-Foundry-Developers",
-      "discord": "discordID#0001"
+      "name": "Justin Conabree",
+      "url": "https://github.com/jconabree"
     }
   ],
   "relationships": {
     "systems": [],
-    "requires": []
+    "requires": [{
+      "id": "monks-common-display",
+      "type": "module",
+      "manifest": "https://github.com/ironmonk88/monks-common-display/releases/latest/download/module.json",
+      "compatibility": {
+        "verified": "12.01"
+      }
+    }]
   },
   "esmodules": [
     "scripts/module.js"
@@ -45,7 +51,7 @@
   "media": [
     {
       "type": "icon",
-      "url": "https://avatars2.githubusercontent.com/u/71292812?s=400&u=ccdb4eeb7abf551ca8f314e5a9bfd0479a4d3d41&v=4"
+      "url": "https://raw.githubusercontent.com/jconabree/foundry-wled/refs/heads/main/icons/logo.png"
     }
   ]
 }

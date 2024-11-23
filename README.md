@@ -1,5 +1,5 @@
 ![](https://img.shields.io/badge/Foundry-v12-informational)
-![Latest Release Download Count](https://img.shields.io/github/downloads/jconabree/foundry-rotate-scene/latest/module.zip)
+![Latest Release Download Count](https://img.shields.io/github/downloads/jconabree/foundry-rotate-scene/module.zip)
 
 
 # FoundryVTT Module - Rotate Scene

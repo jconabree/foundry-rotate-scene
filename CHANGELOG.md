@@ -1,0 +1,13 @@
+# Changelog
+- 1.1.1
+  - Updating readme and moving changelog to separate file
+- 1.1.0
+  - Features
+    - Adding options for default zoom and position
+    - For the shared screen, this zoom/position will be taken when in rotate mode
+  - Bug fixes/Changes
+    - Rotating full body instead of just canvas so all interfaces are also rotated
+- 1.0.0
+  - Option for rotation amount (degrees)
+  - Option to apply to all scenes automatically
+  - Configuration in Scene to overide global configuration (on or off)

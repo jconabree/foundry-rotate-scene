@@ -15,9 +15,18 @@ class FRSCanvas {
     }
 
     _initCanvasRotate() {
+        Hooks.on('canvasInit', (canvas) => {
+            this._setCanvasPosition(
+                this.shouldRotate(
+                    canvas.scene._view,
+                    this.getValue(canvas.scene, 'enabled')
+                )
+            );
+        });
+
         Hooks.on('canvasReady', (canvas) => {
             this._rotateCanvas(
-                this.getShouldRotate(
+                this.shouldRotate(
                     canvas.scene._view,
                     this.getValue(canvas.scene, 'enabled')
                 )
@@ -25,7 +34,7 @@ class FRSCanvas {
         })
         Hooks.on('updateScene', (scene, changed) => {
             this._rotateCanvas(
-                this.getShouldRotate(
+                this.shouldRotate(
                     changed._view ?? scene._view,
                     this.getFlagValue(changed?.flags, 'enabled') ?? this.getValue(scene, 'enabled')
                 )
@@ -48,7 +57,7 @@ class FRSCanvas {
                 </div>
                 <p class="notes">Scene will be rotated for Monk's Common Display.</p>
             </div>
-        `)
+        `);
         $basicTabContent.append($enableRotationCheckbox);
         $(config.form).find('button[type="submit"]').on('click', () => {
             const isEnabled = $(config.form).find('[name="frs-rotate-scene"]').is(':checked') ? '1' : '2';
@@ -56,7 +65,7 @@ class FRSCanvas {
         });
     }
 
-    getShouldRotate(isInView, enabled) {
+    shouldRotate(isInView, enabled) {
         return isInView && ((settings.getValue('all-scenes') && enabled !== '2') || enabled === '1');
     }
 
@@ -65,12 +74,29 @@ class FRSCanvas {
             game.settings.get('monks-common-display', 'startupdata') &&
             sceneShouldRotate
         ) {
-            document.querySelector('canvas#board').classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`)
+            document.body.classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`)
             
             return;
         }
 
-        document.querySelector('canvas#board').classList.remove(...[90, 180, 270].map((deg) => `frs-rotate-${deg}`));
+        document.body.classList.remove(...[90, 180, 270].map((deg) => `frs-rotate-${deg}`));
+    }
+
+    _setCanvasPosition(sceneShouldRotate) {
+        if (
+            !game.settings.get('monks-common-display', 'startupdata') ||
+            !sceneShouldRotate
+        ) {
+            console.log('not setting values');
+
+            return;
+        }
+
+        console.log('Setting values');
+
+        canvas.scene.initial.x = settings.getValue('default-x');
+        canvas.scene.initial.x = settings.getValue('default-y');
+        canvas.scene.initial.scale = settings.getValue('default-zoom');
     }
 
     setValue(entity, key, value) {

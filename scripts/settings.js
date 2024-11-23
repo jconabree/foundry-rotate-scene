@@ -48,6 +48,42 @@ class FRSSettings {
                 default: false
             }
         );
+
+        this.registerSetting(
+            'default-zoom',
+            {
+                name: 'Default Zoom',
+                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                scope: 'world',
+                config: true,
+                type: Number,
+                default: 0
+            }
+        );
+
+        this.registerSetting(
+            'default-x',
+            {
+                name: 'Default X Position',
+                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                scope: 'world',
+                config: true,
+                type: Number,
+                default: 0
+            }
+        );
+
+        this.registerSetting(
+            'default-y',
+            {
+                name: 'Default Y Position',
+                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                scope: 'world',
+                config: true,
+                type: Number,
+                default: 0
+            }
+        );
     }
 
     getValue(key) {

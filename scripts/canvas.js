@@ -71,32 +71,33 @@ class FRSCanvas {
 
     _rotateCanvas(sceneShouldRotate) {
         if (
-            game.settings.get('monks-common-display', 'startupdata') &&
-            sceneShouldRotate
+            !this._isCommonDisplay() ||
+            !sceneShouldRotate
         ) {
-            document.body.classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`)
+            document.body.classList.remove(...[90, 180, 270].map((deg) => `frs-rotate-${deg}`));
             
             return;
         }
 
-        document.body.classList.remove(...[90, 180, 270].map((deg) => `frs-rotate-${deg}`));
+        document.body.classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`)
     }
 
     _setCanvasPosition(sceneShouldRotate) {
         if (
-            !game.settings.get('monks-common-display', 'startupdata') ||
-            !sceneShouldRotate
+            !this._isCommonDisplay() ||
+            !sceneShouldRotate ||
+            !settings.getValue('apply-positions')
         ) {
-            console.log('not setting values');
-
             return;
         }
-
-        console.log('Setting values');
 
         canvas.scene.initial.x = settings.getValue('default-x');
         canvas.scene.initial.x = settings.getValue('default-y');
         canvas.scene.initial.scale = settings.getValue('default-zoom');
+    }
+
+    _isCommonDisplay() {
+        return game.settings.get('monks-common-display', 'startupdata');
     }
 
     setValue(entity, key, value) {

@@ -1,4 +1,8 @@
 # Changelog
+- 1.2.0
+  - Removing console logs
+  - Changing configuration wording to remove mention of an apply button
+  - Adding new configuration (yes/no) to automatically apply positioning to rotated scenes
 - 1.1.1
   - Updating readme and moving changelog to separate file
 - 1.1.0

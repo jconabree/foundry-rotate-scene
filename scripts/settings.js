@@ -50,10 +50,21 @@ class FRSSettings {
         );
 
         this.registerSetting(
+            'apply-positions',
+            {
+                name: 'Apply zoom and positioning',
+                hint: 'Automatically applies configured zoom and positioning to rotated scenes',
+                scope: 'world',
+                config: true,
+                type: Boolean,
+                default: false
+            }
+        );
+
+        this.registerSetting(
             'default-zoom',
             {
-                name: 'Default Zoom',
-                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                name: 'Rotated Zoom',
                 scope: 'world',
                 config: true,
                 type: Number,
@@ -64,8 +75,7 @@ class FRSSettings {
         this.registerSetting(
             'default-x',
             {
-                name: 'Default X Position',
-                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                name: 'Rotated X Position',
                 scope: 'world',
                 config: true,
                 type: Number,
@@ -76,8 +86,7 @@ class FRSSettings {
         this.registerSetting(
             'default-y',
             {
-                name: 'Default Y Position',
-                hint: 'Will be applied when "Apply Defaults" clicked in Scene config',
+                name: 'Rotated Y Position',
                 scope: 'world',
                 config: true,
                 type: Number,

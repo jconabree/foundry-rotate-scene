@@ -1,4 +1,6 @@
 # Changelog
+- 1.2.1
+  - Fixing issue with scene not aligning properly
 - 1.2.0
   - Removing console logs
   - Changing configuration wording to remove mention of an apply button

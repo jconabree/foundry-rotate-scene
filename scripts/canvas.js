@@ -92,7 +92,7 @@ class FRSCanvas {
         }
 
         canvas.scene.initial.x = settings.getValue('default-x');
-        canvas.scene.initial.x = settings.getValue('default-y');
+        canvas.scene.initial.y = settings.getValue('default-y');
         canvas.scene.initial.scale = settings.getValue('default-zoom');
     }
 

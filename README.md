@@ -1,4 +1,5 @@
 ![](https://img.shields.io/badge/Foundry-v12-informational)
+![](https://img.shields.io/badge/Foundry-v13-informational)
 ![Latest Release Download Count](https://img.shields.io/github/downloads/jconabree/foundry-rotate-scene/module.zip)
 
 
@@ -11,6 +12,4 @@ This is useful for in-person play when using a table display. Rather than rotati
 Interaction with the canvas is inverted.
 This module is meant to be used for illustrative scenes, rather than functional ones.
 
-## Roadmap
-- Future Release
-  - Typescript
+NOTE: At this time, despite this module being compatible with v13, Monk's Common Display, which this module relies on, is not.

@@ -1,4 +1,8 @@
 # Changelog
+- 1.3.0
+  - Adding v13 support
+    - Changing minimum version to v12 instead of 10
+  - Removing note for typescript roadmap  
 - 1.2.1
   - Fixing issue with scene not aligning properly
 - 1.2.0

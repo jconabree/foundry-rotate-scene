@@ -43,11 +43,12 @@ class FRSCanvas {
     }
 
     _initSceneRotationInput(config) {
-        const $basicTabContent = $(config.form).find('.tab[data-group="main"][data-tab="basic"]')
+        const $basicTabContent = $(config.form).find(this._getBasicTabSelector())
         $basicTabContent.append('<hr>');
-        const isChecked = config.object && this.getValue(config.object, 'enabled') === '1' ? 'checked=""' : '';
+        const entity = this._getEntityFromConfig(config);
+        const isChecked = entity && this.getValue(entity, 'enabled') === '1' ? 'checked=""' : '';
         const $enableRotationCheckbox = $(`
-            <div class="form-group">
+            <div class="form-group slim">
                 <label>Scene Rotation</label>
                 <div class="form-fields">
                     <label class="checkbox">
@@ -55,13 +56,13 @@ class FRSCanvas {
                         <input type="checkbox" name="frs-rotate-scene" ${isChecked}>
                     </label>                
                 </div>
-                <p class="notes">Scene will be rotated for Monk's Common Display.</p>
+                <p class="${this._getHintClass()}">Scene will be rotated for Monk's Common Display.</p>
             </div>
         `);
         $basicTabContent.append($enableRotationCheckbox);
         $(config.form).find('button[type="submit"]').on('click', () => {
             const isEnabled = $(config.form).find('[name="frs-rotate-scene"]').is(':checked') ? '1' : '2';
-            this.setValue(config.object, 'enabled', isEnabled);
+            this.setValue(this._getEntityFromConfig(config), 'enabled', isEnabled);
         });
     }
 
@@ -98,6 +99,18 @@ class FRSCanvas {
 
     _isCommonDisplay() {
         return game.settings.get('monks-common-display', 'startupdata');
+    }
+
+    _getBasicTabSelector() {
+        return settings.getGameVersion() === '13' ? '.tab[data-group="sheet"][data-tab="basics"]' : '.tab[data-group="main"][data-tab="basic"]';
+    }
+
+    _getEntityFromConfig(config) {
+        return settings.getGameVersion() === '13' ? config.document : config.object;
+    }
+
+    _getHintClass() {
+        return settings.getGameVersion() === '13' ? 'hint' : 'notes';
     }
 
     setValue(entity, key, value) {

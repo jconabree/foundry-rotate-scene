@@ -102,6 +102,10 @@ class FRSSettings {
     setValue(key, value) {
         return game.settings.set(this.#SETTINGS_ID, key, value);
     }
+
+    getGameVersion() {
+        return game.version?.split('.')[0] || game.data?.version?.split('.')[0];
+    }
 }
 
 export default new FRSSettings();

@@ -1,6 +1,7 @@
 # Changelog
 - Unreleased
   - Raising minimum Foundry version to v13 (verified v14)
+  - Fixing release package missing translation files
 - 1.3.0
   - Adding v13 support
     - Changing minimum version to v12 instead of 10

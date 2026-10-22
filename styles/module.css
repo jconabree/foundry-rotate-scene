@@ -1,3 +1,4 @@
+/* The module's single intentional global selector: the whole page (body) must rotate on the Common Display client. Add no other bare selectors. */
 body {
     &.frs-rotate-90 {
         transform: rotate(90deg);

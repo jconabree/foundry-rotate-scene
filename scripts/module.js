@@ -1,10 +1,14 @@
-import settings from './settings.js';
-import canvas from './canvas.js';
+import { registerSettings } from './settings.js';
+import { applyRotation, onCanvasReady, onUpdateScene } from './display.js';
+import { injectSceneRotationField } from './scene-config.js';
+import { guard } from './guard.js';
 
-Hooks.once('init', async function () {
-    settings.init();
-});
-
-Hooks.once('setup', async function () {
-    canvas.init();
-});
+Hooks.once(
+    'init',
+    guard(() =>
+        registerSettings({ onRotationChange: guard(() => applyRotation(canvas?.scene ?? null)) }),
+    ),
+);
+Hooks.on('renderSceneConfig', guard(injectSceneRotationField));
+Hooks.on('canvasReady', guard(onCanvasReady));
+Hooks.on('updateScene', guard(onUpdateScene));

@@ -1,3 +1,19 @@
 {
-  "MODULE.hello": "hello"
+  "foundry-rotate-scene.settings.rotation-degrees.name": "Rotation amount",
+  "foundry-rotate-scene.settings.rotation-degrees.hint": "Degrees to rotate the scene on the common display (0, 90, 180, or 270).",
+  "foundry-rotate-scene.settings.all-scenes.name": "Apply to all scenes by default",
+  "foundry-rotate-scene.settings.all-scenes.hint": "Scenes can override this in Scene Config.",
+  "foundry-rotate-scene.settings.apply-positions.name": "Apply zoom and positioning",
+  "foundry-rotate-scene.settings.apply-positions.hint": "Moves the common display to the rotated zoom and position when a rotated scene loads.",
+  "foundry-rotate-scene.settings.default-zoom.name": "Rotated zoom",
+  "foundry-rotate-scene.settings.default-zoom.hint": "Zoom level for rotated scenes. 0 or blank keeps the scene's own zoom.",
+  "foundry-rotate-scene.settings.default-x.name": "Rotated X position",
+  "foundry-rotate-scene.settings.default-x.hint": "Canvas pixel X coordinate to centre the display on for rotated scenes. Leave blank to keep the scene's own position.",
+  "foundry-rotate-scene.settings.default-y.name": "Rotated Y position",
+  "foundry-rotate-scene.settings.default-y.hint": "Canvas pixel Y coordinate to centre the display on for rotated scenes. Leave blank to keep the scene's own position.",
+  "foundry-rotate-scene.sceneConfig.label": "Scene rotation",
+  "foundry-rotate-scene.sceneConfig.hint": "Applies to the Monk's Common Display client.",
+  "foundry-rotate-scene.sceneConfig.inherit": "Use world default",
+  "foundry-rotate-scene.sceneConfig.always": "Always rotate",
+  "foundry-rotate-scene.sceneConfig.never": "Never rotate"
 }

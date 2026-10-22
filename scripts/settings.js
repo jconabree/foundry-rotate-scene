@@ -1,89 +1,40 @@
-class FRSSettings {
-    #SETTINGS_ID = 'foundry-rotate-scene';
+import { MODULE_ID, SETTINGS } from './constants.js';
 
-    /**
-     *
-     * @param {string} configName
-     * @param {SettingsConfig} setting
-     * @public
-     */
-    registerSetting(configName, setting) {
-        game.settings.register(this.#SETTINGS_ID, configName, setting);
-    }
+const i18nKeys = (key) => ({
+    name: `${MODULE_ID}.settings.${key}.name`,
+    hint: `${MODULE_ID}.settings.${key}.hint`,
+});
 
-    /**
-     * @public
-     */
-    init() {
-        this.registerSetting('rotation-degrees', {
-            name: 'Rotation amount',
-            hint: 'In degrees',
+/**
+ * Registers the module's world settings.
+ * @param {{ onRotationChange: () => void }} options Called when a setting that affects rotation changes.
+ */
+export function registerSettings({ onRotationChange }) {
+    const { BooleanField, NumberField } = foundry.data.fields;
+    const register = (key, type, extra = {}) =>
+        game.settings.register(MODULE_ID, key, {
+            ...i18nKeys(key),
             scope: 'world',
             config: true,
-            type: new foundry.data.fields.NumberField({
-                min: 0,
-                max: 270,
-                step: 90,
-                initial: 0,
-                nullable: false,
-            }),
-            default: 0,
+            type,
+            default: type.options.initial,
+            ...extra,
         });
 
-        this.registerSetting('all-scenes', {
-            name: 'Apply to all scenes by default',
-            hint: 'Scenes can override this value',
-            scope: 'world',
-            config: true,
-            type: Boolean,
-            default: false,
-        });
-
-        this.registerSetting('apply-positions', {
-            name: 'Apply zoom and positioning',
-            hint: 'Automatically applies configured zoom and positioning to rotated scenes',
-            scope: 'world',
-            config: true,
-            type: Boolean,
-            default: false,
-        });
-
-        this.registerSetting('default-zoom', {
-            name: 'Rotated Zoom',
-            scope: 'world',
-            config: true,
-            type: Number,
-            default: 0,
-        });
-
-        this.registerSetting('default-x', {
-            name: 'Rotated X Position',
-            scope: 'world',
-            config: true,
-            type: Number,
-            default: 0,
-        });
-
-        this.registerSetting('default-y', {
-            name: 'Rotated Y Position',
-            scope: 'world',
-            config: true,
-            type: Number,
-            default: 0,
-        });
-    }
-
-    getValue(key) {
-        return game.settings.get(this.#SETTINGS_ID, key);
-    }
-
-    setValue(key, value) {
-        return game.settings.set(this.#SETTINGS_ID, key, value);
-    }
-
-    getGameVersion() {
-        return game.version?.split('.')[0] || game.data?.version?.split('.')[0];
-    }
+    register(
+        SETTINGS.ROTATION_DEGREES,
+        new NumberField({ min: 0, max: 270, step: 90, initial: 0, nullable: false }),
+        { onChange: () => onRotationChange() },
+    );
+    register(SETTINGS.ALL_SCENES, new BooleanField({ initial: false }), {
+        onChange: () => onRotationChange(),
+    });
+    register(SETTINGS.APPLY_POSITIONS, new BooleanField({ initial: false }));
+    register(SETTINGS.DEFAULT_ZOOM, new NumberField({ min: 0, initial: 0 }));
+    register(SETTINGS.DEFAULT_X, new NumberField({ integer: true, initial: 0 }));
+    register(SETTINGS.DEFAULT_Y, new NumberField({ integer: true, initial: 0 }));
 }
 
-export default new FRSSettings();
+export function getSetting(key) {
+    return game.settings.get(MODULE_ID, key);
+}

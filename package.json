@@ -11,7 +11,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check:json": "node -e \"for (const f of process.argv.slice(1)) JSON.parse(require('fs').readFileSync(f, 'utf8'))\" module.json languages/en.json",
-    "check": "npm run lint && npm run format:check && npm run check:json"
+    "test": "node --test",
+    "check": "npm run lint && npm run format:check && npm run check:json && npm run test"
   },
   "devDependencies": {
     "@eslint-community/eslint-plugin-eslint-comments": "4.8.1",

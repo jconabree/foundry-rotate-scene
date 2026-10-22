@@ -1,7 +1,17 @@
 # Changelog
 - Unreleased
+  - Scenes saved with the old checkbox unticked now show "Never rotate"; switch them to "Use world default" to follow the world setting
   - Raising minimum Foundry version to v13 (verified v14)
   - Fixing release package missing translation files
+  - Fixing the Scene Config rotation option on Foundry v14
+  - Adding a per-scene "Use world default" option
+  - Applying rotation setting changes without a reload
+  - Using canvas panning for rotated zoom and position
+  - Adding translations for all settings
+  - Rotated zoom and position are now applied each time a rotated scene loads on the display, and only when the rotation amount is not 0
+  - Fixing stacked rotations when the rotation amount changes
+  - Fixing the display losing its rotation when a different scene is updated
+  - Rotated X/Y position settings now store whole numbers; a previously saved fractional value is rounded to a whole number
 - 1.3.0
   - Adding v13 support
     - Changing minimum version to v12 instead of 10

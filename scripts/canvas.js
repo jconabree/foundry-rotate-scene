@@ -37,10 +37,12 @@ class FRSCanvas {
     }
 
     _initSceneRotationInput(config) {
+        // eslint-disable-next-line no-restricted-globals, no-undef -- legacy: see CLAUDE.md "Known legacy patterns"
         const $basicTabContent = $(config.form).find(this._getBasicTabSelector());
         $basicTabContent.append('<hr>');
         const entity = this._getEntityFromConfig(config);
         const isChecked = entity && this.getValue(entity, 'enabled') === '1' ? 'checked=""' : '';
+        // eslint-disable-next-line no-restricted-globals, no-undef -- legacy: see CLAUDE.md "Known legacy patterns"
         const $enableRotationCheckbox = $(`
             <div class="form-group slim">
                 <label>Scene Rotation</label>
@@ -54,9 +56,11 @@ class FRSCanvas {
             </div>
         `);
         $basicTabContent.append($enableRotationCheckbox);
+        // eslint-disable-next-line no-restricted-globals, no-undef -- legacy: see CLAUDE.md "Known legacy patterns"
         $(config.form)
             .find('button[type="submit"]')
             .on('click', () => {
+                // eslint-disable-next-line no-restricted-globals, no-undef -- legacy: see CLAUDE.md "Known legacy patterns"
                 const isEnabled = $(config.form).find('[name="frs-rotate-scene"]').is(':checked')
                     ? '1'
                     : '2';

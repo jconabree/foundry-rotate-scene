@@ -37,7 +37,6 @@ No build step; edit files in place.
 
 ## Known legacy patterns
 Per the strict upgrade rule in `.claude/rules/code-quality.md`, touching any of these files means upgrading the whole file in a preceding commit; if migration-sized, ask first.
-- `styles/module.css`: unscoped `body { &.frs-rotate-* }` selector. Replacement: keep the body class (rotation must hit the whole page) but document that this is the one intentional global; do not add other bare selectors.
 - `module.json` `media` icon URL points at the `foundry-wled` repo. Replacement: this repo's own icon (needs an icon file added first); ask.
 
 ## Verification checklist
@@ -59,6 +58,7 @@ Manual steps in Foundry v14 + Monk's Common Display 14.01, GM client and display
 10. (Optional) steps 1 and 3 on Foundry v13 + MCD 13.01.
 
 ## Gotchas
+- The body-level `frs-rotate-*` selector in `styles/module.css` is the one intentional global (rotation must hit the whole page); do not add other bare selectors.
 - Canvas interaction is inverted by design (CSS rotates the page, not the canvas). Do not "fix" mouse mapping; for illustrative scenes only (see README).
 - Monk's Common Display can change its display mode at runtime; `isCommonDisplay()` is read on each call, but rotation is only re-applied on the next `canvasReady`/`updateScene` (or a rotation-setting change) — a runtime MCD display-mode toggle does not re-apply it. Do not assume its API beyond the `startupdata` setting.
 - Scene Config field targets the `basics` part (`[data-application-part="basics"]`), verified against v13/v14 core templates; if it is missing, the module logs one warning.

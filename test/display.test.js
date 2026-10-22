@@ -137,6 +137,10 @@ test('panTarget includes scale when zoom > 0', () => {
     assert.deepEqual(panTarget({ x: 10, y: 20, zoom: 1.5 }), { x: 10, y: 20, scale: 1.5 });
 });
 
+test('panTarget passes nulls through so canvas.pan keeps the current view', () => {
+    assert.deepEqual(panTarget({ x: null, y: null, zoom: null }), { x: null, y: null });
+});
+
 test('onCanvasReady pans only when display, rotating, and apply-positions is on', () => {
     const positive = fakeCanvas(fakeScene());
     onCanvasReady(positive);

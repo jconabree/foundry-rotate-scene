@@ -22,3 +22,10 @@ In Scene Config > Basics, each scene has a "Scene rotation" select:
 - Never rotate: this scene is never rotated.
 
 Rotation only applies on the Monk's Common Display client; the GM view is never rotated.
+
+## Rotated zoom and position
+The rotated X, Y and zoom settings are canvas pixel coordinates of the view centre. Leave X and Y blank to keep the scene's own position.
+They are applied when a rotated scene loads on the display, not when the rotation amount is 0.
+After changing these values, reload or re-view the scene on the display to see them.
+
+Tip: scenes saved with the old checkbox unticked now show "Never rotate". Switch them to "Use world default" if "Apply to all scenes" should apply.

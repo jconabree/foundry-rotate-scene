@@ -1,5 +1,6 @@
 # Changelog
 - Unreleased
+  - Scenes saved with the old checkbox unticked now show "Never rotate"; switch them to "Use world default" to follow the world setting
   - Raising minimum Foundry version to v13 (verified v14)
   - Fixing release package missing translation files
   - Fixing the Scene Config rotation option on Foundry v14

@@ -3,12 +3,13 @@
 Shared standards live in `.claude/rules/` (loaded automatically); this file covers only what is specific to this package.
 
 ## What this is
-Foundry VTT module (id `foundry-rotate-scene`). Rotates the whole page (`body`) by 0/90/180/270 degrees, only on the Monk's Common Display client, for table-top displays. The GM view is never rotated. Requires the `monks-common-display` module. Plain ESM JavaScript: no build, no npm manifest, no tests.
+Foundry VTT module (id `foundry-rotate-scene`). Rotates the whole page (`body`) by 0/90/180/270 degrees, only on the Monk's Common Display client, for table-top displays. The GM view is never rotated. Requires the `monks-common-display` module. Plain ESM JavaScript: no build step and no tests; `package.json` holds lint/format devDependencies only.
 
 ## Commands
-No build step; edit files in place. Static checks only:
-- `node -e "JSON.parse(require('fs').readFileSync('module.json','utf8'))"`
-- `node -e "JSON.parse(require('fs').readFileSync('languages/en.json','utf8'))"`
+No build step; edit files in place.
+- `npm ci`: install lint/format tooling (devDependencies only).
+- `npm run check`: ESLint, Prettier check, and JSON validation of `module.json` and `languages/en.json`; run before every commit.
+- `npm run lint:fix` / `npm run format`: apply fixes.
 
 ## Layout
 - `module.json`: manifest (tokens `#{VERSION}#` etc. filled by the release workflow).
@@ -41,7 +42,7 @@ Per the strict upgrade rule in `.claude/rules/code-quality.md`, touching any of 
 
 ## Verification checklist
 Static (run and paste real output):
-1. `node -e` JSON parse of `module.json` and `languages/en.json` (commands above) both exit 0.
+1. `npm run check` exits 0.
 2. Every path in `module.json` (`esmodules`, `styles`, `languages`) exists.
 3. `grep -rn "console\.\|innerHTML" scripts/` shows nothing new.
 

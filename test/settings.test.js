@@ -52,6 +52,10 @@ test('every setting is world-scoped, visible, and uses i18n keys', () => {
         assert.equal(config.config, true);
         assert.equal(config.name, `${MODULE_ID}.settings.${key}.name`);
         assert.equal(config.hint, `${MODULE_ID}.settings.${key}.hint`);
+        assert.equal(
+            config.default,
+            key.startsWith('all-') || key === SETTINGS.APPLY_POSITIONS ? false : 0,
+        );
     }
 });
 

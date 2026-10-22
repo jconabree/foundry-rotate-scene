@@ -17,6 +17,7 @@ export function registerSettings({ onRotationChange }) {
             scope: 'world',
             config: true,
             type,
+            default: type.options.initial,
             ...extra,
         });
 

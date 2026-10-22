@@ -1,8 +1,8 @@
-import settings from './settings.js';
+import { registerSettings } from './settings.js';
 import canvas from './canvas.js';
 
 Hooks.once('init', async function () {
-    settings.init();
+    registerSettings({ onRotationChange: () => {} });
 });
 
 Hooks.once('setup', async function () {

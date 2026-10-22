@@ -38,7 +38,6 @@ Per the strict upgrade rule in `.claude/rules/code-quality.md`, touching any of 
 - `styles/module.css`: unscoped `body { &.frs-rotate-* }` selector. Replacement: keep the body class (rotation must hit the whole page) but document that this is the one intentional global; do not add other bare selectors.
 - `module.json` `"scripts": ["scripts/lib/lib.js"]` plus empty `scripts/lib/lib.js`. Replacement: delete both the entry and the file (`esmodules` only).
 - `module.json` `media` icon URL points at the `foundry-wled` repo. Replacement: this repo's own icon (needs an icon file added first); ask.
-- `.github/workflows/main.yml` zips the nonexistent folders language/ and lang/ but the folder is `languages/`, so the release omits translations. Replacement: `languages/` in the `zip` step (known issue, not yet fixed).
 
 ## Verification checklist
 Static (run and paste real output):
@@ -60,5 +59,6 @@ Manual steps in Foundry (list them for the user; never claim they pass):
 - Canvas interaction is inverted by design (CSS rotates the page, not the canvas). Do not "fix" mouse mapping; for illustrative scenes only (see README).
 - Monk's Common Display may lag v13/v14 support (README note); do not assume its API.
 - `module.json`: `library` must be boolean `false` (not a string) and `compatibility.minimum` is `13`.
+- The release workflow's `zip` step lists folders explicitly, and its "Verify Archive Contents" step fails the release if a path referenced by `module.json` is missing. Add any new top-level folder to the `zip` step.
 - Release CI only runs on a published release and replaces tokens in `module.json`; never hard-code them. The `zip` step silently skips missing paths.
 - `README.md` badges show Foundry v13 and v14; new `CHANGELOG.md` entries go under the "Unreleased" heading.

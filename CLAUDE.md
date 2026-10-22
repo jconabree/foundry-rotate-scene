@@ -39,7 +39,7 @@ Per D4, touching any of these files means upgrading the whole file in a precedin
 - `module.json` `"scripts": ["scripts/lib/lib.js"]` plus empty `scripts/lib/lib.js`. Replacement: delete both the entry and the file (`esmodules` only).
 - `module.json` `media` icon URL points at the `foundry-wled` repo. Replacement: this repo's own icon (needs an icon file added first); ask.
 - `.github/workflows/main.yml` zips the nonexistent folders language/ and lang/ but the folder is `languages/`, so the release omits translations. Replacement: `languages/` in the `zip` step (tracked follow-up in the spec).
-- `module.json`: `"library": "false"` is a string and `compatibility.minimum` is 12; these are fixed in the separate manifest commit (target: boolean `false`, minimum `13`).
+- `module.json`: `library` must be boolean `false` (not a string) and `compatibility.minimum` is `13`.
 
 ## Verification checklist
 Static (run and paste real output):
@@ -61,4 +61,4 @@ Manual steps in Foundry (list them for the user; never claim they pass):
 - Canvas interaction is inverted by design (CSS rotates the page, not the canvas). Do not "fix" mouse mapping; for illustrative scenes only (see README).
 - Monk's Common Display may lag v13/v14 support (README note); do not assume its API.
 - Release CI only runs on a published release and replaces tokens in `module.json`; never hard-code them. The `zip` step silently skips missing paths.
-- `README.md` badges still say v12/v13 and `CHANGELOG.md` is not under an "Unreleased" heading; fixed in the manifest commit, not here.
+- `README.md` badges show Foundry v13 and v14; new `CHANGELOG.md` entries go under the "Unreleased" heading.

@@ -1,7 +1,7 @@
 import { MODULE_ID, FLAG_KEY, SCENE_ROTATION } from './constants.js';
 import logger from './logger.js';
 
-const FIELD_NAME = `flags.${MODULE_ID}.enabled`;
+const FIELD_NAME = `flags.${MODULE_ID}.${FLAG_KEY}`;
 const BASICS_SELECTORS = ['[data-application-part="basics"]', '.tab[data-tab="basics"]'];
 const OPTIONS = [
     { value: SCENE_ROTATION.INHERIT, key: 'inherit' },

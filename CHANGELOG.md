@@ -7,7 +7,10 @@
   - Applying rotation setting changes without a reload
   - Using canvas panning for rotated zoom and position
   - Adding translations for all settings
-  - Rotated X/Y position settings now store whole numbers; a previously saved fractional value may be rounded or reset
+  - Rotated zoom and position are now applied each time a rotated scene loads on the display, and only when the rotation amount is not 0
+  - Fixing stacked rotations when the rotation amount changes
+  - Fixing the display losing its rotation when a different scene is updated
+  - Rotated X/Y position settings now store whole numbers; a previously saved fractional value is rounded to a whole number
 - 1.3.0
   - Adding v13 support
     - Changing minimum version to v12 instead of 10

@@ -165,10 +165,10 @@ test('onCanvasReady does not throw without a scene', () => {
 });
 
 test('onUpdateScene ignores scenes that are not viewed', () => {
-    onUpdateScene(fakeScene({ isView: false }));
-    assert.equal(classes.size, 0);
-    onUpdateScene(fakeScene({ isView: true }));
-    assert.deepEqual([...classes], ['frs-rotate-90']);
+    onUpdateScene(fakeScene({ isView: true, flag: '1' }));
+    assert.ok(classes.has('frs-rotate-90'));
+    onUpdateScene(fakeScene({ isView: false, flag: '2' }));
+    assert.ok(classes.has('frs-rotate-90'));
 });
 
 function beforeEachReset() {

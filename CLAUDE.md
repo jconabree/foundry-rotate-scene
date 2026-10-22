@@ -60,8 +60,8 @@ Manual steps in Foundry v14 + Monk's Common Display 14.01, GM client and display
 
 ## Gotchas
 - Canvas interaction is inverted by design (CSS rotates the page, not the canvas). Do not "fix" mouse mapping; for illustrative scenes only (see README).
-- Monk's Common Display can change its display mode at runtime; `isCommonDisplay()` is read on each call, so do not cache it. Do not assume its API beyond the `startupdata` setting.
-- The v14 Scene Config `basics` part selector is unverified in Foundry; if the field doesn't appear, check the logged warning.
+- Monk's Common Display can change its display mode at runtime; `isCommonDisplay()` is read on each call, but rotation is only re-applied on the next `canvasReady`/`updateScene` (or a rotation-setting change) — a runtime MCD display-mode toggle does not re-apply it. Do not assume its API beyond the `startupdata` setting.
+- Scene Config field targets the `basics` part (`[data-application-part="basics"]`), verified against v13/v14 core templates; if it is missing, the module logs one warning.
 - `module.json`: `library` must be boolean `false` (not a string) and `compatibility.minimum` is `13`.
 - The release workflow's `zip` step lists folders explicitly, and its "Verify Archive Contents" step fails the release if a path referenced by `module.json` is missing. Add any new top-level folder to the `zip` step.
 - Release CI only runs on a published release and replaces tokens in `module.json`; never hard-code them. The `zip` step silently skips missing paths.

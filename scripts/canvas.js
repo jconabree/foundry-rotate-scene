@@ -1,7 +1,7 @@
 import settings from './settings.js';
 
 class FRSCanvas {
-    #flagKey = 'foundry-rotate-scene'
+    #flagKey = 'foundry-rotate-scene';
 
     init() {
         this._initCanvasOptions();
@@ -11,39 +11,33 @@ class FRSCanvas {
     _initCanvasOptions() {
         Hooks.on('renderSceneConfig', (config) => {
             this._initSceneRotationInput(config);
-        })
+        });
     }
 
     _initCanvasRotate() {
         Hooks.on('canvasInit', (canvas) => {
             this._setCanvasPosition(
-                this.shouldRotate(
-                    canvas.scene._view,
-                    this.getValue(canvas.scene, 'enabled')
-                )
+                this.shouldRotate(canvas.scene._view, this.getValue(canvas.scene, 'enabled')),
             );
         });
 
         Hooks.on('canvasReady', (canvas) => {
             this._rotateCanvas(
-                this.shouldRotate(
-                    canvas.scene._view,
-                    this.getValue(canvas.scene, 'enabled')
-                )
-            );         
-        })
+                this.shouldRotate(canvas.scene._view, this.getValue(canvas.scene, 'enabled')),
+            );
+        });
         Hooks.on('updateScene', (scene, changed) => {
             this._rotateCanvas(
                 this.shouldRotate(
                     changed._view ?? scene._view,
-                    this.getFlagValue(changed?.flags, 'enabled') ?? this.getValue(scene, 'enabled')
-                )
+                    this.getFlagValue(changed?.flags, 'enabled') ?? this.getValue(scene, 'enabled'),
+                ),
             );
-        })
+        });
     }
 
     _initSceneRotationInput(config) {
-        const $basicTabContent = $(config.form).find(this._getBasicTabSelector())
+        const $basicTabContent = $(config.form).find(this._getBasicTabSelector());
         $basicTabContent.append('<hr>');
         const entity = this._getEntityFromConfig(config);
         const isChecked = entity && this.getValue(entity, 'enabled') === '1' ? 'checked=""' : '';
@@ -60,27 +54,30 @@ class FRSCanvas {
             </div>
         `);
         $basicTabContent.append($enableRotationCheckbox);
-        $(config.form).find('button[type="submit"]').on('click', () => {
-            const isEnabled = $(config.form).find('[name="frs-rotate-scene"]').is(':checked') ? '1' : '2';
-            this.setValue(this._getEntityFromConfig(config), 'enabled', isEnabled);
-        });
+        $(config.form)
+            .find('button[type="submit"]')
+            .on('click', () => {
+                const isEnabled = $(config.form).find('[name="frs-rotate-scene"]').is(':checked')
+                    ? '1'
+                    : '2';
+                this.setValue(this._getEntityFromConfig(config), 'enabled', isEnabled);
+            });
     }
 
     shouldRotate(isInView, enabled) {
-        return isInView && ((settings.getValue('all-scenes') && enabled !== '2') || enabled === '1');
+        return (
+            isInView && ((settings.getValue('all-scenes') && enabled !== '2') || enabled === '1')
+        );
     }
 
     _rotateCanvas(sceneShouldRotate) {
-        if (
-            !this._isCommonDisplay() ||
-            !sceneShouldRotate
-        ) {
+        if (!this._isCommonDisplay() || !sceneShouldRotate) {
             document.body.classList.remove(...[90, 180, 270].map((deg) => `frs-rotate-${deg}`));
-            
+
             return;
         }
 
-        document.body.classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`)
+        document.body.classList.add(`frs-rotate-${settings.getValue('rotation-degrees')}`);
     }
 
     _setCanvasPosition(sceneShouldRotate) {
@@ -102,7 +99,9 @@ class FRSCanvas {
     }
 
     _getBasicTabSelector() {
-        return settings.getGameVersion() === '13' ? '.tab[data-group="sheet"][data-tab="basics"]' : '.tab[data-group="main"][data-tab="basic"]';
+        return settings.getGameVersion() === '13'
+            ? '.tab[data-group="sheet"][data-tab="basics"]'
+            : '.tab[data-group="main"][data-tab="basic"]';
     }
 
     _getEntityFromConfig(config) {

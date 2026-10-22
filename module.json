@@ -17,24 +17,20 @@
   ],
   "relationships": {
     "systems": [],
-    "requires": [{
-      "id": "monks-common-display",
-      "type": "module",
-      "manifest": "https://github.com/ironmonk88/monks-common-display/releases/latest/download/module.json",
-      "compatibility": {
-        "minimum": "12.01"
+    "requires": [
+      {
+        "id": "monks-common-display",
+        "type": "module",
+        "manifest": "https://github.com/ironmonk88/monks-common-display/releases/latest/download/module.json",
+        "compatibility": {
+          "minimum": "12.01"
+        }
       }
-    }]
+    ]
   },
-  "esmodules": [
-    "scripts/module.js"
-  ],
-  "scripts": [
-    "scripts/lib/lib.js"
-  ],
-  "styles": [
-    "styles/module.css"
-  ],
+  "esmodules": ["scripts/module.js"],
+  "scripts": ["scripts/lib/lib.js"],
+  "styles": ["styles/module.css"],
   "languages": [
     {
       "lang": "en",

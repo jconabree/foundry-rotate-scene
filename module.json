@@ -6,8 +6,8 @@
   "library": "false",
   "compatibility": {
     "minimum": 12,
-    "verified": 13,
-    "maximum": 13
+    "verified": 14,
+    "maximum": 14
   },
   "authors": [
     {
@@ -22,7 +22,7 @@
       "type": "module",
       "manifest": "https://github.com/ironmonk88/monks-common-display/releases/latest/download/module.json",
       "compatibility": {
-        "verified": "12.01"
+        "minimum": "12.01"
       }
     }]
   },

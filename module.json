@@ -23,13 +23,13 @@
         "type": "module",
         "manifest": "https://github.com/ironmonk88/monks-common-display/releases/latest/download/module.json",
         "compatibility": {
-          "minimum": "12.01"
+          "minimum": "13.01",
+          "verified": "14.01"
         }
       }
     ]
   },
   "esmodules": ["scripts/module.js"],
-  "scripts": ["scripts/lib/lib.js"],
   "styles": ["styles/module.css"],
   "languages": [
     {

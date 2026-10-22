@@ -38,10 +38,3 @@ export function registerSettings({ onRotationChange }) {
 export function getSetting(key) {
     return game.settings.get(MODULE_ID, key);
 }
-
-function getGameVersion() {
-    return game.version?.split('.')[0] || game.data?.version?.split('.')[0];
-}
-
-// Transitional: removed with canvas.js in the Scene Config rebuild.
-export default { getValue: getSetting, getGameVersion };
